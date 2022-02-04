@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>exchanges.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-exchanges.html">exchanges</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~list">list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~listBindingsDestination">listBindingsDestination</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~listBindingsSource">listBindingsSource</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~name">name</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~publish">publish</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~remove">remove</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~update">update</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-queues.html">queues</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~addAction">addAction</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~list">list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~listBindings">listBindings</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~listMessages">listMessages</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~name">name</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~purgeContent">purgeContent</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~remove">remove</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~update">update</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">exchanges.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const request = require('./request')
+
+/**
+ * A exchanges can manage exchanges
+ * @module exchanges
+ */
+function exchanges (config) {
+  const rp = request(config)
+
+  const { vhost } = config
+
+  return {
+    /**
+     * Manage a single queue
+     * @function
+     * @param {string} name - the queue name
+     * @returns {Object&lt;methods>}}
+     */
+    name (name) {
+      return {
+        /**
+          * Get the exchange
+          * @see https://rawcdn.githack.com/rabbitmq/rabbitmq-server/v3.9.10/deps/rabbitmq_management/priv/www/api/index.html
+          * @param {Object} [params] - axios params
+          * @return {Promise} - the Promise for the http request
+          */
+        get (params = {}) {
+          return rp('GET', `/exchanges/${vhost}/${name}`, params)
+        },
+
+        /**
+          * Remove the exchange
+          * @see https://rawcdn.githack.com/rabbitmq/rabbitmq-server/v3.9.10/deps/rabbitmq_management/priv/www/api/index.html
+          * @param {Object} [params] - axios params
+          * @return {Promise} - the Promise for the http request
+          */
+        remove (params = {}) {
+          return rp('DELETE', `/exchanges/${vhost}/${name}`, params)
+        },
+
+        /**
+          * Update the exchange
+          * @see https://rawcdn.githack.com/rabbitmq/rabbitmq-server/v3.9.10/deps/rabbitmq_management/priv/www/api/index.html
+          * @param {Object} [data] - body request
+          * @return {Promise} - the Promise for the http request
+          */
+        update (data) {
+          return rp('PUT', `/exchanges/${vhost}/${name}`, data)
+        },
+
+        /**
+          * List bindings source from the exchange
+          * @see https://rawcdn.githack.com/rabbitmq/rabbitmq-server/v3.9.10/deps/rabbitmq_management/priv/www/api/index.html
+          * @param {Object} [params] - axios params
+          * @return {Promise} - the Promise for the http request
+          */
+        listBindingsSource (params = {}) {
+          return rp('GET', `/exchanges/${vhost}/${name}/bindings/source`, params)
+        },
+
+        /**
+          * List bindings destination from the exchange
+          * @see https://rawcdn.githack.com/rabbitmq/rabbitmq-server/v3.9.10/deps/rabbitmq_management/priv/www/api/index.html
+          * @param {Object} [params] - axios params
+          * @return {Promise} - the Promise for the http request]
+          */
+        listBindingsDestination (params = {}) {
+          return rp('GET', `/exchanges/${vhost}/${name}/bindings/destination`, params)
+        },
+
+        /**
+          * Publish a message to the exchange
+          * @see https://rawcdn.githack.com/rabbitmq/rabbitmq-server/v3.9.10/deps/rabbitmq_management/priv/www/api/index.html
+          * @param {Object} [params] - body request
+          * @return {Promise} - the Promise for the http request
+          */
+        publish (data) {
+          return rp('POST', `/exchanges/${vhost}/${name}/publish`, data)
+        }
+      }
+    },
+
+    /**
+      * List all exchanges
+      * @see https://rawcdn.githack.com/rabbitmq/rabbitmq-server/v3.9.10/deps/rabbitmq_management/priv/www/api/index.html
+      * @param {Object} [params] - axios params
+      * @return {Promise} - the Promise for the http request
+      */
+    list (params = {}) {
+      return rp('GET', `/exchanges/${vhost}`, params)
+    }
+
+  }
+}
+
+module.exports = exchanges
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Thu Nov 25 2021 11:56:04 GMT-0300 (Brasilia Standard Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

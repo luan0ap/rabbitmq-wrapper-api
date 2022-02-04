@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>rabbitmq.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-exchanges.html">exchanges</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~list">list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~listBindingsDestination">listBindingsDestination</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~listBindingsSource">listBindingsSource</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~name">name</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~publish">publish</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~remove">remove</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-exchanges.html#~update">update</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-queues.html">queues</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~addAction">addAction</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~list">list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~listBindings">listBindings</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~listMessages">listMessages</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~name">name</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~purgeContent">purgeContent</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~remove">remove</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-queues.html#~update">update</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">rabbitmq.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const queues = require('./queues')
+const exchanges = require('./exchanges')
+
+/**
+  * RabbitMQ initialization config
+  * @typedef {Object} RabbitMQ.instanceConfig
+  * @prop {string} [hostname] - the RabbitMQ host
+  * @prop {string} [username] - the RabbitMQ username
+  * @prop {string} [password] - the user's password
+  * @prop {string|number} [port] - the RabbitMQ port
+  * @prop {string} [vhost] - the RabbitMQ vhost if necessary
+  */
+/**
+ * Instance all others modules
+ * @param {RabbitMQ.instanceConfig} param0 - config
+ * @returns {Object} - the modules instances
+ */
+module.exports = function ({
+  hostname = 'http://localhost',
+  username = 'guest',
+  password = 'guest',
+  port = 15672,
+  vhost = '/'
+} = {
+  hostname: 'http://localhost',
+  username: 'guest',
+  password: 'guest',
+  port: 15672,
+  vhost: '/'
+}) {
+  const config = {
+    hostname,
+    username,
+    password,
+    port,
+    vhost: encodeURIComponent(vhost)
+  }
+
+  return {
+    queues: {
+      ...queues(config)
+    },
+
+    exchanges: {
+      ...exchanges(config)
+    }
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Thu Nov 25 2021 11:56:04 GMT-0300 (Brasilia Standard Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

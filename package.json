@@ -1,0 +1,24 @@
+{
+  "name": "rabbitmq-api",
+  "version": "0.0.0",
+  "description": "A wrapper for RabbitMQ API",
+  "main": "lib/rabbitmq.js",
+  "author": "luan0ap <luanap.kun@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint:fix": "standard --fix",
+    "test": "jest",
+    "make-docs": "node_modules/.bin/jsdoc -c .jsdoc.json --verbose"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.15",
+    "standard": "^16.0.4"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "jsdoc": "^3.6.7",
+    "minami": "^1.2.3"
+  }
+}
