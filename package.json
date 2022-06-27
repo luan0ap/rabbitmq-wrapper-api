@@ -1,15 +1,14 @@
 {
-  "name": "rabbitmq-api",
-  "version": "0.0.0",
+  "name": "rabbitmq-wrapper-api",
+  "version": "0.0.1",
   "description": "A wrapper for RabbitMQ API",
   "main": "lib/rabbitmq.js",
-  "author": "luan0ap <luanap.kun@gmail.com>",
+  "author": "luan.ap <luanap.kun@gmail.com>",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "lint:fix": "standard --fix",
     "test": "jest",
-    "make-docs": "node_modules/.bin/jsdoc -c .jsdoc.json --verbose"
+    "make-docs": "jsdoc -c .jsdoc.json --verbose"
   },
   "devDependencies": {
     "jest": "^27.3.1",
@@ -20,5 +19,26 @@
     "axios": "^0.24.0",
     "jsdoc": "^3.6.7",
     "minami": "^1.2.3"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luan0ap/rabbitmq-wrapper-api.git"
+  },
+  "keywords": [
+    "wrapper",
+    "rabbitmq",
+    "restapi",
+    "abstract",
+    "rabbit",
+    "wrap",
+    "request"
+  ],
+  "bugs": {
+    "url": "https://github.com/luan0ap/rabbitmq-wrapper-api/issues"
+  },
+  "homepage": "https://github.com/luan0ap/rabbitmq-wrapper-api#readme"
 }

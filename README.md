@@ -1,4 +1,4 @@
-# RabbitMQ-API
+# RabbitMQ-wrapper-API
 
 `RabbitMQ.js` provides a minimal higher-level wrapper around rabbitmq's API.
 
@@ -6,9 +6,9 @@
 
 ```javascript
 /*
-  Data retrieved from API will return a raw axios
+  Data retrieved from API will return a raw axios response
 */
-const RabbitMQ = require('rabbitmq-api');
+const RabbitMQ = require('rabbitmq-wrapper-api');
 
 const { queues, exchanges } = RabbitMQ({
   hostname: 'http://localhost',
@@ -30,9 +30,9 @@ exchanges.name('exchange-name').get({}) // allowed axios params
 
 ## API Documentation
 
-[API documentation][docs] is generated from JSDoc
+The documentation is generated from JSDoc
 
-You could check the docs using
+You could check the docs for each function using
 ```shell
 yarn make-docs
 
@@ -43,11 +43,11 @@ npm run make-docs
 `RabbitMQ.js` is available from `npm` or `yarn`.
 
 ```shell
-npm install https://github.com/luan0ap/rabbitmq-wrapper-api
+npm install rabbitmq-wrapper-api
 ```
 
 ```shell
-yarn add https://github.com/luan0ap/rabbitmq-wrapper-api
+yarn add rabbitmq-wrapper-api
 ```
 
 ### Tests
