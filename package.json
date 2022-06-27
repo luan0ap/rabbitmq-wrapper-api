@@ -1,6 +1,6 @@
 {
   "name": "rabbitmq-wrapper-api",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A wrapper for RabbitMQ API",
   "main": "lib/rabbitmq.js",
   "author": "luan.ap <luanap.kun@gmail.com>",
